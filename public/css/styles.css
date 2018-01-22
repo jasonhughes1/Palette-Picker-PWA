@@ -1,4 +1,13 @@
 
+h1 {
+  color: blue;
+  height: 10vh;
+  text-align: center;
+}
+
+main {
+  height: 90vh;
+}
 
 .project-pallete {
   margin-top: 10px;
