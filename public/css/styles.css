@@ -30,7 +30,27 @@ main {
 }
 
 .main-color {
-  border: 2px solid red;
+  border: 2px solid black;
   width: 100px;
   height: 100px;
+}
+
+#color1 {
+  background-color: blue;
+}
+
+#color2 {
+  background-color: green;
+}
+
+#color3 {
+  background-color: red;
+}
+
+#color4 {
+  background-color: yellow;
+}
+
+#color5 {
+  background-color: purple;
 }
