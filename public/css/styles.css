@@ -1,4 +1,8 @@
 
+* {
+  font-family: 'Exo 2', sans-serif;
+}
+
 h1 {
   color: blue;
   height: 10vh;
