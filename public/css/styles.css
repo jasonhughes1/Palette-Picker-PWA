@@ -1,0 +1,27 @@
+
+
+.project-pallete {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+}
+
+.project-color {
+  border: 2px solid black;
+  width: 100px;
+  height: 100px;
+}
+
+.main-pallete {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+}
+
+.main-color {
+  border: 2px solid red;
+  width: 100px;
+  height: 100px;
+}
