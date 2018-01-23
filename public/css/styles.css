@@ -44,17 +44,8 @@ main {
 
 .main-color {
   border: 2px solid black;
-  width: 100px;
-  height: 100px;
 }
 
-.color {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  width: 100px;
-}
 
 #color1 {
   background-color: blue;
@@ -76,6 +67,15 @@ main {
   background-color: purple;
 }
 
+.color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 300px;
+}
+
+
 .unlocked-image {
   width: 40px;
   height: 40px;
@@ -86,6 +86,7 @@ main {
 
 .unlocked-image:hover {
   background-color: white;
+  border-radius: 10px;
 }
 
 .hex-code {
