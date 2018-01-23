@@ -20,13 +20,19 @@ body {
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .main-color {
   margin-top: 5px;
   border: 2px solid #32404B;
-  border-radius: 10px;
+  cursor: pointer;
+  /*border-radius: 10px;*/
+}
+
+.main-color:hover {
+  background-color: blue;
+  border: 2px solid white;
 }
 
 .button-div {
@@ -39,7 +45,6 @@ body {
   width: 200px;
   font-size: 18px;
   border: 2px solid #32404B;
-  border-radius: 10px;
   box-shadow: 5px 10px #32404B;
   margin-bottom: 30px;
   cursor: pointer;
@@ -49,33 +54,12 @@ body {
   background-color: #44EE16;
 }
 
-
-/*.color1 {
-  background-color: blue;
-}
-
-.color2 {
-  background-color: green;
-}
-
-.color3 {
-  background-color: red;
-}
-
-.color4 {
-  background-color: yellow;
-}
-
-.color5 {
-  background-color: purple;
-}*/
-
 .color {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 200px;
+  height: 300px;
   width: 200px;
 }
 
@@ -85,11 +69,6 @@ body {
   background-image: url('../assets/unlock.svg');
   background-size: contain;
   cursor: pointer;
-}
-
-.unlocked-image:hover {
-  background-color: white;
-  border-radius: 10px;
 }
 
 .hex-code {
@@ -124,7 +103,6 @@ body {
   height: 25px;
   width: 100px;
   border: 2px solid #32404B;
-  border-radius: 10px;
   box-shadow: 2px 4px #32404B;
   cursor: pointer;
 }
