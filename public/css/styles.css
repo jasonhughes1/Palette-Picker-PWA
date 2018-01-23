@@ -45,7 +45,6 @@ main {
   border-radius: 10px;
   box-shadow: 5px 10px #32404B;
   margin-bottom: 30px;
-  margin-top: 50px;
   cursor: pointer;
 }
 
@@ -82,7 +81,6 @@ main {
   width: 300px;
 }
 
-
 .unlocked-image {
   width: 40px;
   height: 40px;
@@ -99,4 +97,32 @@ main {
 .hex-code {
   color: white;
   font-size: 20px;
+}
+
+.save-pallete-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.save-pallete-title {
+  color: white;
+}
+
+.name-input {
+  width: 200px;
+  margin: -15px 0px 2px 0px;
+}
+
+.save-button {
+  height: 25px;
+  width: 100px;
+  border: 2px solid #32404B;
+  border-radius: 10px;
+  box-shadow: 2px 4px #32404B;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #44EE16;
 }
