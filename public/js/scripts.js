@@ -25,4 +25,9 @@ const updateRandomColors = (i) => {
 };
 
 
+const toggleLockIcon = () => {
+  
+}
+
+
 $('.generate-button').on('click', updateRandomColors)

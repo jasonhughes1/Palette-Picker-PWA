@@ -4,6 +4,8 @@
 }
 
 h1 {
+  font-size: 60px;
+
   color: white;
   height: 10vh;
   text-align: center;
@@ -47,6 +49,9 @@ main {
 }
 
 .color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100px;
   width: 100px;
 }
@@ -77,6 +82,10 @@ main {
   background-image: url('../assets/unlock.svg');
   background-size: contain;
   cursor: pointer;
+}
+
+.unlocked-image:hover {
+  background-color: white;
 }
 
 .hex-code {
