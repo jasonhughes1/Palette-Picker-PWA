@@ -58,3 +58,12 @@ main {
 #color5 {
   background-color: purple;
 }
+
+.unlocked-image {
+  width: 40px;
+  height: 40px;
+  background-image: url('../assets/unlock.svg');
+  background-size: contain;
+  cursor: pointer;
+
+}
