@@ -54,7 +54,7 @@ main {
 }
 
 
-.color1 {
+/*.color1 {
   background-color: blue;
 }
 
@@ -72,7 +72,7 @@ main {
 
 .color5 {
   background-color: purple;
-}
+}*/
 
 .color {
   display: flex;
