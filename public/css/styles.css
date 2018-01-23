@@ -39,6 +39,11 @@ main {
   height: 100px;
 }
 
+.color {
+  height: 100px;
+  width: 100px;
+}
+
 #color1 {
   background-color: blue;
 }
