@@ -5,7 +5,6 @@
 
 h1 {
   font-size: 60px;
-
   color: white;
   height: 10vh;
   text-align: center;
@@ -22,28 +21,36 @@ main {
   height: 90vh;
 }
 
-.project-pallete {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  border: 2px solid black;
-}
-
-.project-color {
-  border: 2px solid black;
-  width: 100px;
-  height: 100px;
-}
-
 .main-pallete {
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
-  border: 2px solid black;
 }
 
 .main-color {
   border: 2px solid black;
+  border-radius: 10px;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+}
+
+.generate-button {
+  height: 50px;
+  width: 200px;
+  font-size: 18px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 10px black;
+  margin-bottom: 30px;
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+.generate-button:hover{
+  background-color: #44EE16;
 }
 
 
