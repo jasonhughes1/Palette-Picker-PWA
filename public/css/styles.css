@@ -13,21 +13,18 @@ h1 {
 body {
   background-image: url('../assets/conrad-ziebland-123322.jpg');
   background-repeat: no-repeat;
-
   background-size: cover;
-}
-
-main {
-  height: 90vh;
 }
 
 .main-pallete {
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .main-color {
+  margin-top: 5px;
   border: 2px solid #32404B;
   border-radius: 10px;
 }
@@ -76,9 +73,10 @@ main {
 .color {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 200px;
 }
 
 .unlocked-image {
@@ -96,6 +94,14 @@ main {
 
 .hex-code {
   color: white;
+  font-size: 20px;
+}
+
+.code1,
+.code2,
+.code3,
+.code4,
+.code5 {
   font-size: 20px;
 }
 

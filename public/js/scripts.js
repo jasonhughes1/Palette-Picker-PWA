@@ -19,8 +19,8 @@ const updateRandomColors = (i) => {
 
   if(!$(`.color${i}`).hasClass('locked')) {
     let color = generateRandomColor()
-    $(`.color${i}`).css('background-color', color);
-    $(`.hex-code${i}`).text(color)
+    $(`.color${i}`).css('background-color', color)
+    $(`.code${i}`).text(color)
   };
  };
 };
