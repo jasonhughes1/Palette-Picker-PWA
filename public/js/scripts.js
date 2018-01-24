@@ -27,5 +27,16 @@ const toggleLockIcon = (event) => {
     icon.closest('.unlocked-image').toggleClass('locked');
 }
 
+const projectGenerator = () => {
+  const project = $('.project-input').val();
+  $('.new-project').append(`<option>${project}</option>`)
+}
+
+const paletteGenerator = () => {
+}
+
+
+
+$('.save-button').on('click', event => projectGenerator());
 $('.unlocked-image').on('click', event => toggleLockIcon(event));
 $('.generate-button').on('click', updateRandomColors)

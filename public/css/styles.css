@@ -120,3 +120,8 @@ body {
 .save-button:hover {
   background-color: #44EE16;
 }
+
+.new-project {
+  font-size: 10px;
+  color: red;
+}
