@@ -14,21 +14,18 @@ const generateRandomColor = () => {
 
 const updateRandomColors = (i) => {
   for (var i = 0; i < 6; i++) {
-    if(!$(`.color${i}`).hasClass('locked')) {
+    if(!$(`.color${i}`).hasClass('selected')) {
       let color = generateRandomColor()
       $(`.color${i}`).css('background-color', color)
       $(`.code${i}`).text(color)
-    };
+    }
   };
 };
 
 const toggleLockIcon = (event) => {
   const icon = $(event.target);
-  if (!icon.hasClass('locked')) {
+    icon.parents('.color').toggleClass('selected')
     icon.closest('.unlocked-image').toggleClass('locked');
-  } else {
-    icon.closest('.unlocked-image').toggleClass('locked');
-  }
 }
 
 $('.unlocked-image').on('click', event => toggleLockIcon(event));
