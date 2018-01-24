@@ -2,12 +2,12 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Pallete Picker</title>
+  <title>Palete Picker</title>
   <link rel="stylesheet" type="text/css" href="./css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
 </head>
 <body>
-  <h1>Pallete Picker</h1>
+  <h1>Palete Picker</h1>
   <main>
     <div class='button-div'>
       <button class='generate-button'>Generate Random Colors</button>
@@ -15,25 +15,35 @@
       <section class='main-pallete'>
         <article class = 'main-color color1 color '>
           <div class='unlocked-image'></div>
-          <h3 class='hex-code'></h3>
+          <h3 class='code1'></h3>
         </article>
         <article class = 'main-color color2 color'>
           <div class="unlocked-image"></div>
-          <h3 class='hex-code'></h3>
+          <h3 class='code2'></h3>
         </article>
         <article class = 'main-color color3 color'>
           <div class="unlocked-image"></div>
-          <h3 class='hex-code'></h3>
+          <h3 class='code3'></h3>
         </article>
         <article class = 'main-color color4 color'>
           <div class="unlocked-image"></div>
-          <h3 class='hex-code'></h3>
+          <h3 class='code4'></h3>
         </article>
         <article class = 'main-color color5 color'>
           <div class="unlocked-image"></div>
-          <h3 class='hex-code'></h3>
+          <h3 class='code5'></h3>
         </article>
     </section>
+      <div class='save-pallete-container'>
+        <h2 class='save-pallete-title'>Like this Palete? Save it to a project!</h2>
+        <form>
+          <select class='Project'>
+            <option value='Project1'>Project 1</option>
+          </select>
+          <form>
+        <input class='name-input' type='text' placeholder='Name Your Pallete Here'>
+        <button class='save-button'>Save</button>
+      </div>
   </main>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="../js/scripts.js"></script>

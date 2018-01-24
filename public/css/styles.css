@@ -13,23 +13,25 @@ h1 {
 body {
   background-image: url('../assets/conrad-ziebland-123322.jpg');
   background-repeat: no-repeat;
-
   background-size: cover;
-}
-
-main {
-  height: 90vh;
 }
 
 .main-pallete {
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .main-color {
+  margin-top: 5px;
   border: 2px solid #32404B;
-  border-radius: 10px;
+  cursor: pointer;
+}
+
+.main-color:hover {
+  background-color: blue;
+  border: 2px solid white;
 }
 
 .button-div {
@@ -42,10 +44,7 @@ main {
   width: 200px;
   font-size: 18px;
   border: 2px solid #32404B;
-  border-radius: 10px;
   box-shadow: 5px 10px #32404B;
-  margin-bottom: 30px;
-  margin-top: 50px;
   cursor: pointer;
 }
 
@@ -53,35 +52,15 @@ main {
   background-color: #44EE16;
 }
 
-
-/*.color1 {
-  background-color: blue;
-}
-
-.color2 {
-  background-color: green;
-}
-
-.color3 {
-  background-color: red;
-}
-
-.color4 {
-  background-color: yellow;
-}
-
-.color5 {
-  background-color: purple;
-}*/
-
 .color {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 300px;
-  width: 300px;
+  height: 350px;
+  width: 200px;
+  margin: 2px;
 }
-
 
 .unlocked-image {
   width: 40px;
@@ -91,12 +70,45 @@ main {
   cursor: pointer;
 }
 
-.unlocked-image:hover {
-  background-color: white;
-  border-radius: 10px;
+.locked {
+  width: 40px;
+  height: 40px;
+  background-image: url('../assets/lock.svg.png');
+  background-size: contain;
+  cursor: pointer;
 }
 
-.hex-code {
-  color: white;
+.code1,
+.code2,
+.code3,
+.code4,
+.code5 {
   font-size: 20px;
+}
+
+.save-pallete-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.save-pallete-title {
+  color: white;
+}
+
+.name-input {
+  width: 200px;
+  margin: -15px 0px 2px 0px;
+}
+
+.save-button {
+  height: 25px;
+  width: 100px;
+  border: 2px solid #32404B;
+  box-shadow: 2px 4px #32404B;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #44EE16;
 }
