@@ -35,12 +35,22 @@ app.get('/api/v1/projects', (request, response) => {
     })
 });
 
+app.post('/api/v1/projects', (request, response) => {
+  const projects = request.body;
 
-app.post('/api/v1/palettes', (request, response) => {
-  const id = Date.now();
-  const { palette } = request.body;
+  for(let requiredParameter of ['projectName']) {
+    if(!projects[requiredParameter]) {
+      return response.status(422).json({
+        error: `You are missing the required parameter ${requiredParameter}`
+        })
+      }
+    }
 
-  app.locals.palettes.push(message);
-
-  response.status(201).json({id: message});
-})
+  database('projects').insert(projects, 'id')
+    .then(projects => {
+      return response.status(201).json({ id: projects[0] })
+    })
+    .catch(error => {
+      return response.status(500).json({ error })
+    })
+  })
