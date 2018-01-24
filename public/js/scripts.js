@@ -11,7 +11,6 @@ const generateRandomColor = () => {
   return color;
 };
 
-
 const updateRandomColors = (i) => {
   for (var i = 0; i < 6; i++) {
     if(!$(`.color${i}`).hasClass('selected')) {
