@@ -92,3 +92,19 @@ app.post('/api/v1/projects', (request, response) => {
         return response.status(500).json({ error })
       })
   })
+  app.get('/api/v1/projects/palettes', (request, response) => {
+    const { projectID } = request.params;
+    database('palette').select()
+      .then(palette => {
+        if(palette.length) {
+          return response.status(200).json({ palette })
+      } else {
+        return response.status(404).json({
+          error: 'Did not find palette for project with id'
+        })
+      }
+    })
+      .catch(error => {
+        return response.status(500).json({ error })
+      })
+  })

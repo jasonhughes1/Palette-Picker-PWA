@@ -1,7 +1,11 @@
+
 $(document).ready(() => {
   updateRandomColors();
   projectFetcher();
+  paletteFetcher()
+  .then(palettes => displayPalettes(palettes))
 });
+
 
 const generateRandomColor = () => {
   const characters = '0123456789ABCDEF';
@@ -45,6 +49,24 @@ const projectFetcher = async () =>  {
   })
 }
 
+const paletteFetcher = async () => {
+  const palettes = await fetch('/api/v1/projects/palettes')
+  const fetchedPalettes = await palettes.json()
+  const allPalettes = fetchedPalettes.palette
+  const cleanPalettes = allPalettes.reduce((accu, currItem, index) => {
+      if(!accu[currItem.projectName]) {
+        Object.assign(accu, {[currItem.projectName]: []})
+        accu[currItem.projectName].push(currItem)
+      } else {
+        accu[currItem.projectName].push(currItem)
+      }
+      return accu;
+    }, {})
+    return cleanPalettes
+  }
+const displayPalettes =  (palettes) => {
+}
+
 const postProject = async (name) => {
   try {
     const postNewProject = await fetch('api/v1/projects', {
@@ -58,6 +80,11 @@ const postProject = async (name) => {
     return projectInfo
   }  catch (error) {
   }
+}
+
+const paletteGenerator = () => {
+  let palette = $('.pale  tte-input').val();
+  $('.')
 }
 
 
