@@ -28,6 +28,7 @@ body {
   margin-top: 5px;
   border: 2px solid #32404B;
   cursor: pointer;
+  width: 200px;
 }
 
 .main-color:hover {
@@ -59,8 +60,6 @@ body {
   flex-direction: column;
   align-items: center;
   height: 350px;
-  width: 200px;
-  margin: 2px;
 }
 
 .unlocked-image {
@@ -119,4 +118,20 @@ body {
 
 .save-button:hover {
   background-color: #44EE16;
+}
+
+.new-project,
+.save-button-palette,
+.save-button-project,
+.name-input {
+  font-size: 14px;
+}
+
+.projects-palettes-container {
+  height: auto;
+  border: 1px solid white;
+}
+
+.project-card {
+  border: 1px solid white;
 }

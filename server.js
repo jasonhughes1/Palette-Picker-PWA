@@ -35,12 +35,76 @@ app.get('/api/v1/projects', (request, response) => {
     })
 });
 
+app.post('/api/v1/projects', (request, response) => {
+  const projects = request.body;
 
-app.post('/api/v1/palettes', (request, response) => {
-  const id = Date.now();
-  const { palette } = request.body;
+  for(let requiredParameter of ['projectName']) {
+    if(!projects[requiredParameter]) {
+      return response.status(422).json({
+        error: `You are missing the required parameter ${requiredParameter}`
+        })
+      }
+    }
 
-  app.locals.palettes.push(message);
+  database('projects').insert(projects, 'id')
+    .then(projects => {
+      return response.status(201).json({ id: projects[0] })
+    })
+    .catch(error => {
+      return response.status(500).json({ error })
+    })
+  })
 
-  response.status(201).json({id: message});
-})
+  app.post('/api/v1/projects/:projectID/palette', (request, response) => {
+    const { projectID } = request.params;
+    const palette = Object.assign({}, request.body, {projects_id: projectID});
+    console.log(palette);
+    for (let requiredParameter of ['projectName', 'paletteName', 'color1', 'color2', 'color3', 'color4', 'color5']) {
+      if(!palette[requiredParameter]) {
+        return response.status(422).json({
+          error: `You are missing the required parameter ${requiredParameter}`
+        })
+      }
+    }
+
+    database('palette').insert(palette, 'id')
+      .then(palette => {
+        return response.status(201).json({ id: palette[0] })
+      })
+      .catch(error => {
+        return response.status(500).json({ error })
+      })
+    })
+
+  app.get('/api/v1/projects/:projectID/palette', (request, response) => {
+    const { projectID } = request.params;
+    database('palette').where('projects_id', projectID).select()
+      .then(palette => {
+        if(palette.length) {
+          return response.status(200).json({ palette })
+      } else {
+        return response.status(404).json({
+          error: `Did not find palette for project with id ${request.params.projectID}`
+        })
+      }
+    })
+      .catch(error => {
+        return response.status(500).json({ error })
+      })
+  })
+  app.get('/api/v1/projects/palettes', (request, response) => {
+    const { projectID } = request.params;
+    database('palette').select()
+      .then(palette => {
+        if(palette.length) {
+          return response.status(200).json({ palette })
+      } else {
+        return response.status(404).json({
+          error: 'Did not find palette for project with id'
+        })
+      }
+    })
+      .catch(error => {
+        return response.status(500).json({ error })
+      })
+  })
