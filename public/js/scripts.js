@@ -76,7 +76,6 @@ const projectMapper = (cleanPalettes) => {
 }
 
 const displayPalettes =  (palettes) => {
-
   const { projectName, paletteName, color1, color2, color3, color4, color5, id, projects_id } = palettes
   $('.projects-palettes-container').append(
     `<div projectCard
@@ -104,10 +103,42 @@ const postProject = async (name) => {
     })
     const projectInfo = await postNewProject.json()
     return projectInfo
-  }  catch (error) {
+    }  catch (error) {
+  }
+}
+
+const savePalette = (event) => {
+  event.preventDefault()
+  const palName = $('.palette-input').val()
+  const prjName = $('.new-project').val()
+
+  const palColors = {
+    color1: $('.code1').text(),
+    color2: $('.code2').text(),
+    color3: $('.code3').text(),
+    color4: $('.code4').text(),
+    color5: $('.code5').text()
+  }
+  const pal = { prjName, palName, ...palColors }
+  console.log(pal);
+}
+
+const postPalette = async (palette) => {
+  try {
+    const postNewPalette = await fetch('api/v1/projects/:projectsID/palette', {
+      method: 'POST',
+      body: JSON.stringify({ palette }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const paletteInfo = await postNewPalette.json()
+    return paletteInfo
+    } catch (error) {
   }
 }
 
 $('.save-button-project').on('click', event => projectGenerator());
 $('.unlocked-image').on('click', event => toggleLockIcon(event));
-$('.generate-button').on('click', updateRandomColors)
+$('.generate-button').on('click', updateRandomColors);
+$('.save-button-palette').on('click', event => savePalette(event));
