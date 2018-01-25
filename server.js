@@ -55,6 +55,26 @@ app.post('/api/v1/projects', (request, response) => {
     })
   })
 
+  app.post('/api/v1/projects/:projectID/palette', (request, response) => {
+    const { projectID } = request.params;
+    const palette = Object.assign({}, request.body, {projects_id: projectID});
+    console.log(palette);
+    for (let requiredParameter of ['projectName', 'paletteName', 'color1', 'color2', 'color3', 'color4', 'color5']) {
+      if(!palette[requiredParameter]) {
+        return response.status(422).json({
+          error: `You are missing the required parameter ${requiredParameter}`
+        })
+      }
+    }
+
+    database('palette').insert(palette, 'id')
+      .then(palette => {
+        return response.status(201).json({ id: palette[0] })
+      })
+      .catch(error => {
+        return response.status(500).json({ error })
+      })
+    })
   // const saveProject = () => {
   //
   // }
