@@ -3,7 +3,6 @@ $(document).ready(() => {
   updateRandomColors();
   projectFetcher();
   paletteFetcher()
-  // .then(palettes => displayPalettes(palettes))
 });
 
 
@@ -37,8 +36,6 @@ const projectGenerator = () => {
   $('.new-project').append(`<option>${project}</option>`)
   postProject(project)
 }
-// const paletteGenerator = () => {
-// }
 
 const projectFetcher = async () =>  {
   const project = await fetch('/api/v1/projects')
@@ -53,8 +50,11 @@ const paletteFetcher = async () => {
   const palettes = await fetch('/api/v1/projects/palettes')
   const fetchedPalettes = await palettes.json()
   const allPalettes = fetchedPalettes.palette
+  organizeData(allPalettes)
+}
+
+const organizeData = (allPalettes) => {
   const cleanPalettes = allPalettes.reduce((accu, currIndex) => {
-    console.log(currIndex);
       if(!accu[currIndex.projectName]) {
         Object.assign(accu, {[currIndex.projectName]: []})
         accu[currIndex.projectName].push(currIndex)
@@ -64,7 +64,8 @@ const paletteFetcher = async () => {
       return accu;
     }, {})
     projectMapper(cleanPalettes)
-}
+  }
+
 
 const projectMapper = (cleanPalettes) => {
   Object.keys(cleanPalettes).map(key => {
@@ -106,7 +107,6 @@ const postProject = async (name) => {
   }  catch (error) {
   }
 }
-
 
 $('.save-button-project').on('click', event => projectGenerator());
 $('.unlocked-image').on('click', event => toggleLockIcon(event));
