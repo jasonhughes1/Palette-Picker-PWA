@@ -1,5 +1,6 @@
 $(document).ready(() => {
   updateRandomColors();
+  projectFetcher();
 });
 
 const generateRandomColor = () => {
@@ -28,15 +29,38 @@ const toggleLockIcon = (event) => {
 }
 
 const projectGenerator = () => {
-  const project = $('.project-input').val();
+  let project = $('.project-input').val();
   $('.new-project').append(`<option>${project}</option>`)
+  postProject(project)
+}
+// const paletteGenerator = () => {
+// }
+
+const projectFetcher = async () =>  {
+  const project = await fetch('/api/v1/projects')
+  const fetchedProject = await project.json()
+  const allProjects = fetchedProject.projects
+  allProjects.forEach(name => {
+    $('.new-project').append(`<option>${name.projectName}</option`)
+  })
 }
 
-const paletteGenerator = () => {
+const postProject = async (name) => {
+  try {
+    const postNewProject = await fetch('api/v1/projects', {
+      method: 'POST',
+      body: JSON.stringify({projectName: name}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const projectInfo = await postNewProject.json()
+    return projectInfo
+  }  catch (error) {
+  }
 }
 
 
-
-$('.save-button').on('click', event => projectGenerator());
+$('.save-button-project').on('click', event => projectGenerator());
 $('.unlocked-image').on('click', event => toggleLockIcon(event));
 $('.generate-button').on('click', updateRandomColors)
