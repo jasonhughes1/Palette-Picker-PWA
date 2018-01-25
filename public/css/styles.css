@@ -28,6 +28,7 @@ body {
   margin-top: 5px;
   border: 2px solid #32404B;
   cursor: pointer;
+  width: 200px;
 }
 
 .main-color:hover {
@@ -96,7 +97,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 400px;
 }
 
 .save-pallete-title {
@@ -127,6 +127,11 @@ body {
   font-size: 14px;
 }
 
+.projects-palettes-container {
+  height: auto;
+  border: 1px solid white;
+}
 
-
-.save-button
+.project-card {
+  border: 1px solid white;
+}

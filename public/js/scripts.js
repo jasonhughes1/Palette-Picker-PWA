@@ -3,7 +3,7 @@ $(document).ready(() => {
   updateRandomColors();
   projectFetcher();
   paletteFetcher()
-  .then(palettes => displayPalettes(palettes))
+  // .then(palettes => displayPalettes(palettes))
 });
 
 
@@ -53,18 +53,43 @@ const paletteFetcher = async () => {
   const palettes = await fetch('/api/v1/projects/palettes')
   const fetchedPalettes = await palettes.json()
   const allPalettes = fetchedPalettes.palette
-  const cleanPalettes = allPalettes.reduce((accu, currItem, index) => {
-      if(!accu[currItem.projectName]) {
-        Object.assign(accu, {[currItem.projectName]: []})
-        accu[currItem.projectName].push(currItem)
+  const cleanPalettes = allPalettes.reduce((accu, currIndex) => {
+    console.log(currIndex);
+      if(!accu[currIndex.projectName]) {
+        Object.assign(accu, {[currIndex.projectName]: []})
+        accu[currIndex.projectName].push(currIndex)
       } else {
-        accu[currItem.projectName].push(currItem)
+        accu[currIndex.projectName].push(currIndex)
       }
       return accu;
     }, {})
-    return cleanPalettes
-  }
+    projectMapper(cleanPalettes)
+}
+
+const projectMapper = (cleanPalettes) => {
+  Object.keys(cleanPalettes).map(key => {
+    cleanPalettes[key].map(palette => {
+      displayPalettes(palette)
+    })
+  })
+}
+
 const displayPalettes =  (palettes) => {
+
+  const { projectName, paletteName, color1, color2, color3, color4, color5, id, projects_id } = palettes
+  $('.projects-palettes-container').append(
+    `<div projectCard
+    <div projectID=${projects_id} paletteID=${id}>
+      <h2>${projectName}</h2>
+      <h3>${paletteName}</h3>
+      <div>${color1}</div>
+      <div>${color2}</div>
+      <div>${color3}</div>
+      <div>${color4}</div>
+      <div>${color5}</div>
+    </div>
+  </div>`
+  )
 }
 
 const postProject = async (name) => {
@@ -80,11 +105,6 @@ const postProject = async (name) => {
     return projectInfo
   }  catch (error) {
   }
-}
-
-const paletteGenerator = () => {
-  let palette = $('.pale  tte-input').val();
-  $('.')
 }
 
 
