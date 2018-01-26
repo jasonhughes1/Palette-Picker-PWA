@@ -1,14 +1,14 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
+const express = require('express'); //add express library to my application
+const bodyParser = require('body-parser'); //add body parser library to my application in order to parse the body of an HTTP request
+const app = express(); //create an instance of the application
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
-const database = require('knex')(configuration);
+const database = require('knex')(configuration); //call the function, call it immediately and we're passing configuration as an arguement
 
 app.set('port', process.env.PORT || 3000);
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true})); //apply the middleware
 
 app.locals.title = 'Palette Picker';
 
@@ -16,7 +16,7 @@ app.locals.title = 'Palette Picker';
 app.use(express.static(__dirname + '/public'));
 
 
-app.listen(app.get('port'), () => {
+app.listen(app.get('port'), () => { //setting up the application to listen
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
 });
 
