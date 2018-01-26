@@ -97,14 +97,14 @@ const projectMapper = (cleanPalettes) => {
 const displayPalettes =  (palettes, index) => {
   const { projectName, paletteName, color1, color2, color3, color4, color5, id, projects_id } = palettes
   $('.projects-palettes-container').append(
-    ` <div id='palette-card' projectID=${projects_id} paletteID=${id}>
+    ` <div class='palette-card' projectID=${projects_id} paletteID=${id}>
       <h2>${projectName}</h2>
       <h3>${paletteName}</h3>
-      <div id='${paletteName}-${index}-1'>${color1}</div>
-      <div id='${paletteName}-${index}-2'>${color2}</div>
-      <div id='${paletteName}-${index}-3'>${color3}</div>
-      <div id='${paletteName}-${index}-4'>${color4}</div>
-      <div id='${paletteName}-${index}-5'>${color5}</div>
+      <div class='cardcolor' id='${paletteName}-${index}-1'>${color1}</div>
+      <div class='cardcolor' id='${paletteName}-${index}-2'>${color2}</div>
+      <div class='cardcolor' id='${paletteName}-${index}-3'>${color3}</div>
+      <div class='cardcolor' id='${paletteName}-${index}-4'>${color4}</div>
+      <div class='cardcolor' id='${paletteName}-${index}-5'>${color5}</div>
   </div>`
   )
   $(`#${paletteName}-${index}-1`).css('background-color', color1)
@@ -119,7 +119,7 @@ const savePalette = (event) => {
   event.preventDefault()
   const paletteName = $('.palette-input').val()
   const projectName = $('.new-project').val()
-  const projects_id = $('#palette-card').attr('projectID')
+  const projects_id = $('.palette-card').find(':selected').attr('projectID')
 
   const palColors = {
     color1: $('.code1').text(),

@@ -131,18 +131,21 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   height: auto;
-  border: 1px solid white;
 }
 
 .project-card {
   border: 1px solid white;
 }
 
-#palette-card {
+.palette-card {
   display: flex;
   flex-direction:column;
   margin: 12px;
   background-color: lightgrey;
-  width: 100px;
+  width: 200px;
   align-items: center;
+}
+
+.cardcolor {
+  width: 100px;
 }
