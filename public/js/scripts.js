@@ -30,19 +30,37 @@ const toggleLockIcon = (event) => {
     icon.closest('.unlocked-image').toggleClass('locked');
 }
 
-const projectGenerator = () => {
-  let project = $('.project-input').val();
-  $('.new-project').append(`<option>${project}</option>`)
-  postProject(project)
+const projectGenerator = async () => {
+  let projectName = $('.project-input').val();
+  const project = await postProject();
+  console.log(project);
+  $('.new-project').append(`<option data-projectID='${project.id}'>${projectName}</option>`)
+  $('.project-input').val('');
 }
 
-const projectFetcher = async (projects_id) =>  {
+const postProject = async () => {
+  const name =  $('.new-project').val()
+  console.log('fired');
+  try {
+    const postNewProject = await fetch('api/v1/projects', {
+      method: 'POST',
+      body: JSON.stringify({projectName: name}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const projectInfo = await postNewProject.json()
+    return projectInfo
+  }  catch (error) {
+  }
+}
+
+const projectFetcher = async () =>  {
   const project = await fetch('/api/v1/projects')
   const fetchedProject = await project.json()
   const allProjects = fetchedProject.projects
   allProjects.forEach(name => {
     $('.new-project').append(`<option>${name.projectName}</option`)
-    paletteFetcher(projects_id)
   })
 }
 
@@ -96,20 +114,6 @@ const displayPalettes =  (palettes, index) => {
   $(`#${paletteName}-${index}-5`).css('background-color', color5)
 }
 
-const postProject = async (name) => {
-  try {
-    const postNewProject = await fetch('api/v1/projects', {
-      method: 'POST',
-      body: JSON.stringify({projectName: name}),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const projectInfo = await postNewProject.json()
-    return projectInfo
-    }  catch (error) {
-  }
-}
 
 const savePalette = (event) => {
   event.preventDefault()
