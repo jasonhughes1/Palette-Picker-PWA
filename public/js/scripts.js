@@ -78,8 +78,7 @@ const projectMapper = (cleanPalettes) => {
 const displayPalettes =  (palettes) => {
   const { projectName, paletteName, color1, color2, color3, color4, color5, id, projects_id } = palettes
   $('.projects-palettes-container').append(
-    `<div projectCard
-    <div projectID=${projects_id} paletteID=${id}>
+    ` <div id='palette-card' projectID=${projects_id} paletteID=${id}>
       <h2>${projectName}</h2>
       <h3>${paletteName}</h3>
       <div>${color1}</div>
@@ -87,7 +86,6 @@ const displayPalettes =  (palettes) => {
       <div>${color3}</div>
       <div>${color4}</div>
       <div>${color5}</div>
-    </div>
   </div>`
   )
 }
@@ -109,8 +107,9 @@ const postProject = async (name) => {
 
 const savePalette = (event) => {
   event.preventDefault()
-  const palName = $('.palette-input').val()
-  const prjName = $('.new-project').val()
+  const paletteName = $('.palette-input').val()
+  const projectName = $('.new-project').val()
+  const projects_id = $('#palette-card').attr('projectID')
 
   const palColors = {
     color1: $('.code1').text(),
@@ -119,13 +118,15 @@ const savePalette = (event) => {
     color4: $('.code4').text(),
     color5: $('.code5').text()
   }
-  const pal = { prjName, palName, ...palColors }
-  console.log(pal);
+  const pal = { projectName, paletteName, projects_id, ...palColors }
+  postPalette(pal)
+
 }
 
 const postPalette = async (palette) => {
+
   try {
-    const postNewPalette = await fetch('api/v1/projects/:projectsID/palette', {
+    const postNewPalette = await fetch(`/api/v1/projects/${palette.projects_id}/palette`, {
       method: 'POST',
       body: JSON.stringify({ palette }),
       headers: {
