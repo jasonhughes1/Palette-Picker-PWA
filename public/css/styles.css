@@ -140,7 +140,10 @@ body {
 }
 
 #palette-card {
+  display: flex;
+  flex-direction:column;
   margin: 12px;
   background-color: lightgrey;
   width: 100px;
+  align-items: center;
 }

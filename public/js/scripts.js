@@ -36,12 +36,13 @@ const projectGenerator = () => {
   postProject(project)
 }
 
-const projectFetcher = async () =>  {
+const projectFetcher = async (projects_id) =>  {
   const project = await fetch('/api/v1/projects')
   const fetchedProject = await project.json()
   const allProjects = fetchedProject.projects
   allProjects.forEach(name => {
     $('.new-project').append(`<option>${name.projectName}</option`)
+    paletteFetcher(projects_id)
   })
 }
 
@@ -49,6 +50,7 @@ const paletteFetcher = async () => {
   const palettes = await fetch('/api/v1/projects/palettes')
   const fetchedPalettes = await palettes.json()
   const allPalettes = fetchedPalettes.palette
+  console.log(allPalettes);
   organizeData(allPalettes)
 }
 

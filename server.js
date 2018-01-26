@@ -56,6 +56,7 @@ app.post('/api/v1/projects', (request, response) => {
   })
 
   app.post('/api/v1/projects/:projectID/palette', (request, response) => {
+    console.log(request.params);
     const { projectID } = request.params;
     const palette = Object.assign({}, request.body.palette, {projects_id: projectID});
     console.log(palette);
@@ -84,7 +85,7 @@ app.post('/api/v1/projects', (request, response) => {
           return response.status(200).json({ palette })
       } else {
         return response.status(404).json({
-          error: `Did not find palette for project with id ${request.params.projectID}`
+          error: `Did not find palette for project with id ${projectID}`
         })
       }
     })
