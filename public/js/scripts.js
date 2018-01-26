@@ -1,4 +1,3 @@
-
 $(document).ready(() => {
   updateRandomColors();
   projectFetcher();
@@ -69,25 +68,30 @@ const organizeData = (allPalettes) => {
 
 const projectMapper = (cleanPalettes) => {
   Object.keys(cleanPalettes).map(key => {
-    cleanPalettes[key].map(palette => {
-      displayPalettes(palette)
+    cleanPalettes[key].map((palette, index) => {
+      displayPalettes(palette, index)
     })
   })
 }
 
-const displayPalettes =  (palettes) => {
+const displayPalettes =  (palettes, index) => {
   const { projectName, paletteName, color1, color2, color3, color4, color5, id, projects_id } = palettes
   $('.projects-palettes-container').append(
     ` <div id='palette-card' projectID=${projects_id} paletteID=${id}>
       <h2>${projectName}</h2>
       <h3>${paletteName}</h3>
-      <div>${color1}</div>
-      <div>${color2}</div>
-      <div>${color3}</div>
-      <div>${color4}</div>
-      <div>${color5}</div>
+      <div id='${paletteName}-${index}-1'>${color1}</div>
+      <div id='${paletteName}-${index}-2'>${color2}</div>
+      <div id='${paletteName}-${index}-3'>${color3}</div>
+      <div id='${paletteName}-${index}-4'>${color4}</div>
+      <div id='${paletteName}-${index}-5'>${color5}</div>
   </div>`
   )
+  $(`#${paletteName}-${index}-1`).css('background-color', color1)
+  $(`#${paletteName}-${index}-2`).css('background-color', color2)
+  $(`#${paletteName}-${index}-3`).css('background-color', color3)
+  $(`#${paletteName}-${index}-4`).css('background-color', color4)
+  $(`#${paletteName}-${index}-5`).css('background-color', color5)
 }
 
 const postProject = async (name) => {
@@ -120,7 +124,6 @@ const savePalette = (event) => {
   }
   const pal = { projectName, paletteName, projects_id, ...palColors }
   postPalette(pal)
-
 }
 
 const postPalette = async (palette) => {

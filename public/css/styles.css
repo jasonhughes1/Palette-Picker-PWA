@@ -128,10 +128,19 @@ body {
 }
 
 .projects-palettes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   height: auto;
   border: 1px solid white;
 }
 
 .project-card {
   border: 1px solid white;
+}
+
+#palette-card {
+  margin: 12px;
+  background-color: lightgrey;
+  width: 100px;
 }
