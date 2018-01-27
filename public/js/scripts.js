@@ -33,14 +33,13 @@ const toggleLockIcon = (event) => {
 const projectGenerator = async () => {
   let projectName = $('.project-input').val();
   const project = await postProject();
-  console.log(project);
+  console.log('project', project.id);
   $('.new-project').append(`<option data-projectID='${project.id}'>${projectName}</option>`)
   $('.project-input').val('');
 }
 
 const postProject = async () => {
-  const name =  $('.new-project').val()
-  console.log('fired');
+  const name =  $('.project-input').val()
   try {
     const postNewProject = await fetch('api/v1/projects', {
       method: 'POST',
@@ -60,7 +59,7 @@ const projectFetcher = async () =>  {
   const fetchedProject = await project.json()
   const allProjects = fetchedProject.projects
   allProjects.forEach(name => {
-    $('.new-project').append(`<option>${name.projectName}</option`)
+    $('.new-project').append(`<option data-projectID='${name.id}'>${name.projectName}</option`)
   })
 }
 
@@ -115,12 +114,47 @@ const displayPalettes =  (palettes, index) => {
 }
 
 
+const appendPalette = () => {
+  const palette_name = $('.palette-input').val();
+  const project_name = $('.new-project').val();
+  const color1 = $('.code1').text();
+  const color2 = $('.code2').text();
+  const color3 = $('.code3').text();
+  const color4 = $('.code4').text();
+  const color5 = $('.code5').text();
+  $('.projects-palettes-container').append(`
+    <div class='palette-card'>
+       <h2>${project_name}</h2>
+       <h3>${palette_name}</h3>
+      <div>
+        <div class='appended-palettes-container'>
+          <div id='${palette_name}-1' class='append-hex'>${color1}</div>
+          <div id='${palette_name}-2' class='append-hex'>${color2}</div>
+          <div id='${palette_name}-3' class='append-hex'>${color3}</div>
+          <div id='${palette_name}-4' class='append-hex'>${color4}</div>
+          <div id='${palette_name}-5' class='append-hex'>${color5}</div>
+        </div>
+      </div>
+    </div>
+  `)
+
+  $(`#${palette_name}-1`).css('background-color', color1);
+  $(`#${palette_name}-2`).css('background-color', color2);
+  $(`#${palette_name}-3`).css('background-color', color3);
+  $(`#${palette_name}-4`).css('background-color', color4);
+  $(`#${palette_name}-5`).css('background-color', color5);
+  $('.palette-input').val('');
+  $('.dropdown').val('Project Title');
+}
+
+
 const savePalette = (event) => {
   event.preventDefault()
   const paletteName = $('.palette-input').val()
   const projectName = $('.new-project').val()
-  const projects_id = $('.palette-card').find(':selected').attr('projectID')
-
+  const projects_id = $('.new-project').find(':selected').attr('data-projectID')
+  console.log($('.new-project').find(':selected'));
+  console.log('projectsid', projects_id);
   const palColors = {
     color1: $('.code1').text(),
     color2: $('.code2').text(),
@@ -133,7 +167,7 @@ const savePalette = (event) => {
 }
 
 const postPalette = async (palette) => {
-
+  console.log('palette', palette);
   try {
     const postNewPalette = await fetch(`/api/v1/projects/${palette.projects_id}/palette`, {
       method: 'POST',
@@ -152,3 +186,4 @@ $('.save-button-project').on('click', event => projectGenerator());
 $('.unlocked-image').on('click', event => toggleLockIcon(event));
 $('.generate-button').on('click', updateRandomColors);
 $('.save-button-palette').on('click', event => savePalette(event));
+$('.save-button-palette').on('click', event => appendPalette());

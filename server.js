@@ -32,7 +32,8 @@ app.get('/api/v1/projects', (request, response) => { //get all data posted in th
 });
 
 app.post('/api/v1/projects', (request, response) => { //post projects to the database under url api/v1/projects
-  const projects = request.body; //set request.body to a variable which stores projects
+  const projects = request.body;
+  console.log('projects in server', projects); //set request.body to a variable which stores projects
 //as an object
   for(let requiredParameter of ['projectName']) { //make sure that every project posted to the database requires a name
     if(!projects[requiredParameter]) { //if that checks to see if all required parameters have been satisfied
@@ -52,8 +53,9 @@ app.post('/api/v1/projects', (request, response) => { //post projects to the dat
   })
 
   app.post('/api/v1/projects/:projectID/palette', (request, response) => {
-    console.log(request.params);
+
     const { projectID } = request.params;
+    console.log(projectID);
     const palette = Object.assign({}, request.body.palette, {projects_id: projectID});
     console.log(palette);
     for (let requiredParameter of ['projectName', 'paletteName', 'color1', 'color2', 'color3', 'color4', 'color5']) {
