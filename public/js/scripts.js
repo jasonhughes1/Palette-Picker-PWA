@@ -67,7 +67,6 @@ const paletteFetcher = async () => {
   const palettes = await fetch('/api/v1/projects/palettes')
   const fetchedPalettes = await palettes.json()
   const allPalettes = fetchedPalettes.palette
-  console.log(allPalettes);
   organizeData(allPalettes)
 }
 
@@ -183,13 +182,20 @@ const postPalette = async (palette) => {
   }
 }
 
-const deletePalette = () => {
-  console.log('YOO');
-}
+const deletePalette = (event) => {
+  const id = $(event.target).closest('.palette-card').attr('paletteid');
+  fetch(`/api/v1/projects/palettes/${id}`, {
+    method: 'DELETE'
+  })
+  .then(response => response.json())
+  .catch(err => console.log(err));
+
+  $(event.target).closest('.palette-card').remove()
+};
 
 $('.save-button-project').on('click', event => projectGenerator());
 $('.unlocked-image').on('click', event => toggleLockIcon(event));
 $('.generate-button').on('click', updateRandomColors);
 $('.save-button-palette').on('click', event => savePalette(event));
 $('.save-button-palette').on('click', event => appendPalette());
-$('.trash-can').on('click', event => deletePalette());
+$('.projects-palettes-container').on('click', '.trash-can', (event) => deletePalette(event));
