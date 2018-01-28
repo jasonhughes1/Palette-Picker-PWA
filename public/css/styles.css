@@ -4,6 +4,7 @@
 }
 
 h1 {
+  margin: auto;
   font-size: 60px;
   color: white;
   height: 10vh;
@@ -11,9 +12,7 @@ h1 {
 }
 
 body {
-  background-image: url('../assets/conrad-ziebland-123322.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: black;
 }
 
 
@@ -27,7 +26,7 @@ body {
 .main-color {
   margin-top: 5px;
   cursor: pointer;
-  width: 18%;
+  width: 19%;
 }
 
 .main-color:hover {
@@ -41,11 +40,10 @@ body {
 }
 
 .generate-button {
+  margin-top: 20px;
   height: 50px;
   width: 200px;
   font-size: 18px;
-  border: 2px solid #32404B;
-  box-shadow: 5px 10px #32404B;
   cursor: pointer;
 }
 
@@ -123,6 +121,7 @@ body {
 .save-button-palette,
 .save-button-project,
 .name-input {
+  margin-top: 5px;
   font-size: 14px;
 }
 
@@ -138,14 +137,39 @@ body {
 }
 
 .palette-card {
+  width: 50%;
   display: flex;
   flex-direction:column;
   margin: 12px;
-  background-color: lightgrey;
-  width: 200px;
+  background-image: url('../assets/michal-grosicki.jpg');
   align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.prj-name {
+  border-bottom: 1px solid black;
+  font-size: 35px;
+}
+
+.pal-name {
+  margin-top: -20px;
+  font-size: 26px;
 }
 
 .cardcolor {
-  width: 100px;
+  width: 80%;
+}
+
+.trash-can {
+  align-self: flex-end;
+  height: 40px;
+  width: 40px;
+}
+
+.trash-can:hover{
+  background-color: red;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px;
 }

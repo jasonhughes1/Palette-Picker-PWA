@@ -97,8 +97,9 @@ const displayPalettes =  (palettes, index) => {
   const { projectName, paletteName, color1, color2, color3, color4, color5, id, projects_id } = palettes
   $('.projects-palettes-container').append(
     ` <div class='palette-card' projectID=${projects_id} paletteID=${id}>
-      <h2>${projectName}</h2>
-      <h3>${paletteName}</h3>
+      <img class="trash-can" src="../assets/trashcan.svg.png" />
+      <h2 class='prj-name'>Project: ${projectName}</h2>
+      <h3 class='pal-name'>Palette: ${paletteName}</h3>
       <div class='cardcolor' id='${paletteName}-${index}-1'>${color1}</div>
       <div class='cardcolor' id='${paletteName}-${index}-2'>${color2}</div>
       <div class='cardcolor' id='${paletteName}-${index}-3'>${color3}</div>
@@ -182,8 +183,13 @@ const postPalette = async (palette) => {
   }
 }
 
+const deletePalette = () => {
+  console.log('YOO');
+}
+
 $('.save-button-project').on('click', event => projectGenerator());
 $('.unlocked-image').on('click', event => toggleLockIcon(event));
 $('.generate-button').on('click', updateRandomColors);
 $('.save-button-palette').on('click', event => savePalette(event));
 $('.save-button-palette').on('click', event => appendPalette());
+$('.trash-can').on('click', event => deletePalette());
