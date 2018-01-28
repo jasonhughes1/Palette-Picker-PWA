@@ -58,6 +58,7 @@ const projectFetcher = async () =>  {
   const project = await fetch('/api/v1/projects')
   const fetchedProject = await project.json()
   const allProjects = fetchedProject.projects
+  console.log(allProjects);
   allProjects.forEach(name => {
     $('.new-project').append(`<option data-projectID='${name.id}'>${name.projectName}</option`)
   })
@@ -85,10 +86,12 @@ const organizeData = (allPalettes) => {
 
 
 const projectMapper = (cleanPalettes) => {
+  console.log(cleanPalettes);
   Object.keys(cleanPalettes).map(key => {
-    cleanPalettes[key].map((palette, index) => {
-      displayPalettes(palette, index)
-    })
+    console.log(key);
+      cleanPalettes[key].map((palette, index) => {
+        displayPalettes(palette, index)
+      })
   })
 }
 
@@ -96,9 +99,8 @@ const displayPalettes =  (palettes, index) => {
   const { projectName, paletteName, color1, color2, color3, color4, color5, id, projects_id } = palettes
   $('.projects-palettes-container').append(
     ` <div class='palette-card' projectID=${projects_id} paletteID=${id}>
-      <img class="trash-can" src="../assets/trashcan.svg.png" />
       <h2 class='prj-name'>Project: ${projectName}</h2>
-      <h3 class='pal-name'>Palette: ${paletteName}</h3>
+      <h3 class='pal-name'>Palette: ${paletteName}<img class="trash-can" src="../assets/trashcan.svg.png" /></h3>
       <div class='cardcolor' id='${paletteName}-${index}-1'>${color1}</div>
       <div class='cardcolor' id='${paletteName}-${index}-2'>${color2}</div>
       <div class='cardcolor' id='${paletteName}-${index}-3'>${color3}</div>
@@ -115,6 +117,7 @@ const displayPalettes =  (palettes, index) => {
 
 
 const appendPalette = () => {
+
   const palette_name = $('.palette-input').val();
   const project_name = $('.new-project').val();
   const color1 = $('.code1').text();
@@ -124,17 +127,13 @@ const appendPalette = () => {
   const color5 = $('.code5').text();
   $('.projects-palettes-container').append(`
     <div class='palette-card'>
-       <h2>${project_name}</h2>
-       <h3>${palette_name}</h3>
-      <div>
-        <div class='appended-palettes-container'>
-          <div id='${palette_name}-1' class='append-hex'>${color1}</div>
-          <div id='${palette_name}-2' class='append-hex'>${color2}</div>
-          <div id='${palette_name}-3' class='append-hex'>${color3}</div>
-          <div id='${palette_name}-4' class='append-hex'>${color4}</div>
-          <div id='${palette_name}-5' class='append-hex'>${color5}</div>
-        </div>
-      </div>
+       <h2 class='prj-name'>Project: ${project_name}</h2>
+       <h3 class='pal-name'>Palette: ${palette_name}<img class="trash-can" src="../assets/trashcan.svg.png" /></h3>
+          <div class='cardcolor' id='${palette_name}-1' class='append-hex'>${color1}</div>
+          <div class='cardcolor' id='${palette_name}-2' class='append-hex'>${color2}</div>
+          <div class='cardcolor' id='${palette_name}-3' class='append-hex'>${color3}</div>
+          <div class='cardcolor' id='${palette_name}-4' class='append-hex'>${color4}</div>
+          <div class='cardcolor' id='${palette_name}-5' class='append-hex'>${color5}</div>
     </div>
   `)
 
