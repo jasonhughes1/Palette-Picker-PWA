@@ -114,3 +114,5 @@ app.post('/api/v1/projects', (request, response) => { //post projects to the dat
       })
       .catch(error => response.status(500).json({ error }))
   });
+
+  module.exports = app;
