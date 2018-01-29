@@ -4,6 +4,7 @@
 }
 
 h1 {
+  margin: -40px 0px 100px 0px;
   font-size: 60px;
   color: white;
   height: 10vh;
@@ -11,9 +12,12 @@ h1 {
 }
 
 body {
-  background-image: url('../assets/conrad-ziebland-123322.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: black;
+}
+
+h3:hover,
+.unlocked-image:hover{
+  cursor: pointer;
 }
 
 
@@ -27,12 +31,12 @@ body {
 .main-color {
   margin-top: 5px;
   cursor: pointer;
-  width: 18%;
+  width: 19%;
 }
 
+
 .main-color:hover {
-  background-color: blue;
-  border: 1px solid white;
+  opacity: 0.5;
 }
 
 .button-div {
@@ -41,11 +45,10 @@ body {
 }
 
 .generate-button {
+  margin-top: 20px;
   height: 50px;
   width: 200px;
   font-size: 18px;
-  border: 2px solid #32404B;
-  box-shadow: 5px 10px #32404B;
   cursor: pointer;
 }
 
@@ -92,7 +95,6 @@ body {
 }
 
 .save-project-container {
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -117,11 +119,22 @@ body {
 
 .save-button:hover {
   background-color: #44EE16;
+  cursor: pointer;
+}
+
+.save-button-palette,
+.save-button-project {
+  background-color: #44EE16;
+  font-size: 18px;
+}
+
+.save-button-palette:hover,
+.save-button-project:hover {
+  background-color: #62FC4D;
+  cursor: pointer;
 }
 
 .new-project,
-.save-button-palette,
-.save-button-project,
 .name-input {
   font-size: 14px;
 }
@@ -138,14 +151,71 @@ body {
 }
 
 .palette-card {
+  width: 50%;
   display: flex;
   flex-direction:column;
   margin: 12px;
-  background-color: lightgrey;
-  width: 200px;
+  background-image: url('../assets/michal-grosicki.jpg');
   align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
 }
 
-.cardcolor {
-  width: 100px;
+.prj-name {
+  border-bottom: 1px solid black;
+  font-size: 35px;
+}
+
+.pal-name {
+  font-size: 26px;
+}
+
+.cardcolor
+ {
+  width: 80%;
+  height: 30px;
+}
+
+.cardcolor:hover{
+  opacity: .6;
+}
+
+.trash-can {
+  align-self: flex-end;
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+}
+
+.trash-can:hover{
+  background-color: red;
+  box-shadow: 5px 5px 5px 5px;
+}
+
+.logo-image {
+  height: 150px;
+  width: 150px;
+}
+
+.save-project-title {
+  color: white;
+}
+
+@media screen and (max-width: 880px) {
+    .logo-image{
+      display: none;
+    }
+
+    h1 {
+      margin-top: auto;
+    }
+
+    .main-pallete {
+      display: flex;
+    }
+
+    .main-color {
+      width: 90%;
+    }
 }

@@ -7,15 +7,11 @@
   <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
 </head>
 <body>
-  <h1>Palette Picker</h1>
+  <h1>Palette<span><img src='../assets/logo.jpg' class='logo-image'/></span>Picker</h1>
   <main>
     <div class='button-div'>
       <button class='generate-button'>Generate Random Colors</button>
     </div>
-      <div class='save-project-container'>
-        <input class='name-input project-input' type='text' placeholder='New Project Name'>
-        <button class='save-button-project'>Save Project</button>
-      </div>
       <section class='main-pallete'>
         <article class = 'main-color color1 color '>
           <div class='unlocked-image'></div>
@@ -38,6 +34,10 @@
           <h3 class='code5'></h3>
         </article>
     </section>
+    <div class='save-project-container'>
+      <h2 class='save-project-title'>CREATE AND SAVE YOUR PROJECT HERE</h2>
+      <input class='name-input project-input' type='text' placeholder='Create A New Project'>
+      <button class='save-button-project'>Save Project</button>
       <div class='save-pallete-container'>
         <h2 class='save-pallete-title'>Like this Palette? Save it to a project!</h2>
         <form class='save-project-form'>
@@ -48,6 +48,7 @@
           <button class='save-button-palette'>Save Palette</button>
         </form>
       </div>
+    </div>
       <div class='projects-palettes-container'>
       </div>
   </main>

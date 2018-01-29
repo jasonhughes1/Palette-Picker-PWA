@@ -13,13 +13,11 @@ app.locals.title = 'Palette Picker'; //the local title of the application will b
 app.use(express.static(__dirname + '/public')); //serves up all static files; such as html css and js
 
 app.listen(app.get('port'), () => { //setting up the application to listen to the port
-  console.log(`${app.locals.title} is running on ${app.get('port')}.`);
 });
 
 app.get('/', (request, response) => { //send palettepicker to the root of my application
   return response.send('palettepicker')
 })
-
 
 app.get('/api/v1/projects', (request, response) => { //get all data posted in the sql database under the url api/v1/projects
   database('projects').select() //from the database select all projects
@@ -32,8 +30,7 @@ app.get('/api/v1/projects', (request, response) => { //get all data posted in th
 });
 
 app.post('/api/v1/projects', (request, response) => { //post projects to the database under url api/v1/projects
-  const projects = request.body;
-  console.log('projects in server', projects); //set request.body to a variable which stores projects
+  const projects = request.body; //set request.body to a variable which stores projects
 //as an object
   for(let requiredParameter of ['projectName']) { //make sure that every project posted to the database requires a name
     if(!projects[requiredParameter]) { //if that checks to see if all required parameters have been satisfied
@@ -55,9 +52,7 @@ app.post('/api/v1/projects', (request, response) => { //post projects to the dat
   app.post('/api/v1/projects/:projectID/palette', (request, response) => {
 
     const { projectID } = request.params;
-    console.log(projectID);
     const palette = Object.assign({}, request.body.palette, {projects_id: projectID});
-    console.log(palette);
     for (let requiredParameter of ['projectName', 'paletteName', 'color1', 'color2', 'color3', 'color4', 'color5']) {
       if(!palette[requiredParameter]) {
         return response.status(422).json({
@@ -65,7 +60,6 @@ app.post('/api/v1/projects', (request, response) => { //post projects to the dat
         })
       }
     }
-
     database('palette').insert(palette, 'id')
       .then(palette => {
         return response.status(201).json({ id: palette[0] })
@@ -107,3 +101,19 @@ app.post('/api/v1/projects', (request, response) => { //post projects to the dat
         return response.status(500).json({ error })
       })
   })
+
+  app.delete('/api/v1/projects/palettes/:id', (request, response) => {
+    const id = request.params;
+    console.log(id);
+    database('palette').where(id).del()
+      .then(pal => {
+        if(!pal) {
+          response.status(422).json({error: 'No pallete exists'});
+        } else {
+          response.sendStatus(204);
+        }
+      })
+      .catch(error => response.status(500).json({ error }))
+  });
+
+  module.exports = app;
