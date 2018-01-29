@@ -52,6 +52,7 @@ app.post('/api/v1/projects', (request, response) => { //post projects to the dat
   app.post('/api/v1/projects/:projectID/palette', (request, response) => {
 
     const { projectID } = request.params;
+    console.log(request.params);
     const palette = Object.assign({}, request.body.palette, {projects_id: projectID});
     for (let requiredParameter of ['projectName', 'paletteName', 'color1', 'color2', 'color3', 'color4', 'color5']) {
       if(!palette[requiredParameter]) {
@@ -104,7 +105,6 @@ app.post('/api/v1/projects', (request, response) => { //post projects to the dat
 
   app.delete('/api/v1/projects/palettes/:id', (request, response) => {
     const id = request.params;
-    console.log(id);
     database('palette').where(id).del()
       .then(pal => {
         if(!pal) {
