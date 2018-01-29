@@ -104,6 +104,7 @@ app.post('/api/v1/projects', (request, response) => { //post projects to the dat
 
   app.delete('/api/v1/projects/palettes/:id', (request, response) => {
     const id = request.params;
+    console.log(id);
     database('palette').where(id).del()
       .then(pal => {
         if(!pal) {
