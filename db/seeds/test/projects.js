@@ -8,7 +8,7 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
 
         knex('projects').insert({
-          projectName: 'project 1'
+          projectName: 'project 1',
         }, 'id')
         .then(palette => {
           return knex('palette').insert([
@@ -26,6 +26,6 @@ exports.seed = function(knex, Promise) {
         })
         .then(() => console.log('Seeding complete'))
         .catch(error => console.log(`Error seeding data: ${error}`))
-      ]) //end promise.all
+      ]) 
     });
 };
