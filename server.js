@@ -8,6 +8,15 @@ app.set('port', process.env.PORT || 3000); //whatever is in the environment vari
 app.use(bodyParser.json()); //declares that I want to use json in my body
 app.use(bodyParser.urlencoded({extended: true})); //apply the middleware
 
+const requireHTTPS = (req, res, next) => {
+  if (req.headers['x-forwarded-proto'] != 'https') {
+    return res.redirect('https://' + req.get('host') + req.url);
+  }
+    next();
+};
+
+app.use(requireHTTPS);
+
 app.locals.title = 'Palette Picker'; //the local title of the application will be palettepicker
 
 app.use(express.static(__dirname + '/public')); //serves up all static files; such as html css and js
