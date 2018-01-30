@@ -116,4 +116,17 @@ app.post('/api/v1/projects', (request, response) => { //post projects to the dat
       .catch(error => response.status(500).json({ error }))
   });
 
+  app.delete('/api/v1/projects/:id', (request, response) => {
+    const id = request.params;
+    database('projects').where(id).del()
+      .then(projects => {
+        if(!projects) {
+          response.status(422).json({error: 'No project exists'});
+        } else {
+          response.sendStatus(204);
+        }
+      })
+      .catch(error => response.status(500).json({ error }))
+  });
+
   module.exports = app;
