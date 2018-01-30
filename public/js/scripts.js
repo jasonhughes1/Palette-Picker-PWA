@@ -93,44 +93,40 @@ const projectMapper = (cleanPalettes) => {
 
 
 const displayPalettes =  (palettes, index) => {
-  console.log(palettes);
   const { projectName, paletteName, color1, color2, color3, color4, color5, id, projects_id } = palettes
-
+  const paletteID = paletteName.replace(/\s/g, '');
+  console.log(paletteID);
   if ($(".projects-palettes-container").find(`[projectid=${projects_id}]`).length > 0) {
     $(".projects-palettes-container").find(`[projectid=${projects_id}]`).append(
-      `<div paletteID=${id} class='parent-palette-name'>
-        <div class='palette-to-delete'>
+      `<div id=${id} class='parent-palette-name'>
         <h3 class='pal-name'>Palette: ${paletteName}<img class="trash-can" src="../assets/trashcan.svg.png" /></h3>
-        <div class='cardcolor' id='${paletteName}-${index}-1'>${color1}</div>
-        <div class='cardcolor' id='${paletteName}-${index}-2'>${color2}</div>
-        <div class='cardcolor' id='${paletteName}-${index}-3'>${color3}</div>
-        <div class='cardcolor' id='${paletteName}-${index}-4'>${color4}</div>
-        <div class='cardcolor' id='${paletteName}-${index}-5'>${color5}</div>
-      </div>
+        <div class='cardcolor' id='${paletteID}-${index}-1'>${color1}</div>
+        <div class='cardcolor' id='${paletteID}-${index}-2'>${color2}</div>
+        <div class='cardcolor' id='${paletteID}-${index}-3'>${color3}</div>
+        <div class='cardcolor' id='${paletteID}-${index}-4'>${color4}</div>
+        <div class='cardcolor' id='${paletteID}-${index}-5'>${color5}</div>
     </div>`
     )
   } else {
     $('.projects-palettes-container').append(
       ` <div class='palette-card' id=${projectName} projectID=${projects_id}>
-      <h2 class='prj-name'>Project: ${projectName}</h2>
-      <div paletteID=${id} class='parent-palette-name'
-        <div class='palette-to-delete'>
+        <h2 class='prj-name'>Project: ${projectName}<img class='delete-project-x' src="../assets/REDX.png" /></h2>
+        <div id=${id} class='parent-palette-name'
       <h3 class='pal-name'>Palette: ${paletteName}<img class="trash-can" src="../assets/trashcan.svg.png" /></h3>
-      <div class='cardcolor' id='${paletteName}-${index}-1'>${color1}</div>
-      <div class='cardcolor' id='${paletteName}-${index}-2'>${color2}</div>
-      <div class='cardcolor' id='${paletteName}-${index}-3'>${color3}</div>
-      <div class='cardcolor' id='${paletteName}-${index}-4'>${color4}</div>
-      <div class='cardcolor' id='${paletteName}-${index}-5'>${color5}</div>
-    </div>
+      <div class='cardcolor' id='${paletteID}-${index}-1'>${color1}</div>
+      <div class='cardcolor' id='${paletteID}-${index}-2'>${color2}</div>
+      <div class='cardcolor' id='${paletteID}-${index}-3'>${color3}</div>
+      <div class='cardcolor' id='${paletteID}-${index}-4'>${color4}</div>
+      <div class='cardcolor' id='${paletteID}-${index}-5'>${color5}</div>
     </div>
     </div>`
   )
   }
-  $(`#${paletteName}-${index}-1`).css('background-color', color1)
-  $(`#${paletteName}-${index}-2`).css('background-color', color2)
-  $(`#${paletteName}-${index}-3`).css('background-color', color3)
-  $(`#${paletteName}-${index}-4`).css('background-color', color4)
-  $(`#${paletteName}-${index}-5`).css('background-color', color5)
+  $(`#${paletteID}-${index}-1`).css('background-color', color1)
+  $(`#${paletteID}-${index}-2`).css('background-color', color2)
+  $(`#${paletteID}-${index}-3`).css('background-color', color3)
+  $(`#${paletteID}-${index}-4`).css('background-color', color4)
+  $(`#${paletteID}-${index}-5`).css('background-color', color5)
 }
 
 const savePalette = (event) => {
@@ -138,8 +134,6 @@ const savePalette = (event) => {
   const paletteName = $('.palette-input').val()
   const projectName = $('.new-project').val()
   const projects_id = $('.new-project').find(':selected').attr('data-projectID')
-  console.log($('.new-project').find(':selected'));
-  console.log('projectsid', projects_id);
   const palColors = {
     color1: $('.code1').text(),
     color2: $('.code2').text(),
@@ -153,7 +147,7 @@ const savePalette = (event) => {
 }
 
 const postPalette = async (palette) => {
-  console.log('palette', palette);
+
   try {
     const postNewPalette = await fetch(`/api/v1/projects/${palette.projects_id}/palette`, {
       method: 'POST',
@@ -169,8 +163,22 @@ const postPalette = async (palette) => {
 }
 
 const deletePalette = (event) => {
-  const id = $(event.target).closest('.parent-palette-name').attr('.palette-to-delete'); //problem here
+  const id = $(event.target).closest('.parent-palette-name').attr('id')
+  console.log(id);
   fetch(`/api/v1/projects/palettes/${id}`, {
+    method: 'DELETE'
+  })
+  .then(response => response.json())
+  .catch(err => console.log(err));
+
+  $(event.target).closest('.parent-palette-name').remove()
+};
+
+const deleteProject = (event) => {
+  console.log('hello');
+  const id = $(event.target).closest('.parent-palette-name').attr('id')
+  console.log(id);
+  fetch(`/api/v1/projects/${id}`, {
     method: 'DELETE'
   })
   .then(response => response.json())
@@ -179,8 +187,11 @@ const deletePalette = (event) => {
   $(event.target).closest('.palette-card').remove()
 };
 
+
+
 $('.save-button-project').on('click', event => projectGenerator());
 $('.unlocked-image').on('click', event => toggleLockIcon(event));
 $('.generate-button').on('click', updateRandomColors);
 $('.save-button-palette').on('click', event => savePalette(event));
 $('.projects-palettes-container').on('click', '.trash-can', (event) => deletePalette(event));
+$('.projects-palettes-container').on('click', '.delete-project-x', (event) => deleteProject(event));
