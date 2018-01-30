@@ -98,8 +98,8 @@ const displayPalettes =  (palettes, index) => {
   console.log(paletteID);
   if ($(".projects-palettes-container").find(`[projectid=${projects_id}]`).length > 0) {
     $(".projects-palettes-container").find(`[projectid=${projects_id}]`).append(
-      `<div id=${id} class='parent-palette-name'>
-        <h3 class='pal-name'>Palette: ${paletteName}<img class="trash-can" src="../assets/trashcan.svg.png" /></h3>
+        `<h3 class='pal-name'>Palette: ${paletteName}<img class="trash-can" src="../assets/trashcan.svg.png" /></h3>
+        <div id=${id} class='parent-palette-name'>
         <div class='cardcolor' id='${paletteID}-${index}-1'>${color1}</div>
         <div class='cardcolor' id='${paletteID}-${index}-2'>${color2}</div>
         <div class='cardcolor' id='${paletteID}-${index}-3'>${color3}</div>
@@ -111,8 +111,8 @@ const displayPalettes =  (palettes, index) => {
     $('.projects-palettes-container').append(
       ` <div class='palette-card' id=${projectName} projectID=${projects_id}>
         <h2 class='prj-name'>Project: ${projectName}<img class='delete-project-x' src="../assets/REDX.png" /></h2>
-        <div id=${id} class='parent-palette-name'
-      <h3 class='pal-name'>Palette: ${paletteName}<img class="trash-can" src="../assets/trashcan.svg.png" /></h3>
+        <h3 class='pal-name'>Palette: ${paletteName}<img class="trash-can" src="../assets/trashcan.svg.png" /></h3>
+        <div id=${id} class='parent-palette-name'>
       <div class='cardcolor' id='${paletteID}-${index}-1'>${color1}</div>
       <div class='cardcolor' id='${paletteID}-${index}-2'>${color2}</div>
       <div class='cardcolor' id='${paletteID}-${index}-3'>${color3}</div>

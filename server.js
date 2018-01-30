@@ -15,7 +15,7 @@ const requireHTTPS = (req, res, next) => {
     next();
 };
 
-app.use(requireHTTPS);
+// app.use(requireHTTPS);
 
 app.locals.title = 'Palette Picker'; //the local title of the application will be palettepicker
 

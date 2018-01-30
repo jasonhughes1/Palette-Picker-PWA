@@ -173,7 +173,6 @@ h3:hover,
 
 .cardcolor
  {
-  width: 80%;
   height: 30px;
 }
 
@@ -213,6 +212,10 @@ h3:hover,
   box-shadow: 5px 5px 5px 5px;
 }
 
+.parent-palette-name {
+  width: 80%;
+}
+
 @media screen and (max-width: 880px) {
     .logo-image{
       display: none;
@@ -229,5 +232,5 @@ h3:hover,
     .main-color {
       width: 90%;
     }
-    
+
 }
