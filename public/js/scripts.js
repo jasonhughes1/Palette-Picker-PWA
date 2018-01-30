@@ -110,7 +110,7 @@ const displayPalettes =  (palettes, index) => {
   } else {
     $('.projects-palettes-container').append(
       ` <div class='palette-card' id=${projectName} projectID=${projects_id}>
-        <h2 class='prj-name'>Project: ${projectName}<span><button class='delete-project-button'>Delete Project</button></span></h2>
+        <h2 class='prj-name'>Project: ${projectName}<img class='delete-project-x' src="../assets/REDX.png" /></h2>
         <div id=${id} class='parent-palette-name'
       <h3 class='pal-name'>Palette: ${paletteName}<img class="trash-can" src="../assets/trashcan.svg.png" /></h3>
       <div class='cardcolor' id='${paletteID}-${index}-1'>${color1}</div>
@@ -194,4 +194,4 @@ $('.unlocked-image').on('click', event => toggleLockIcon(event));
 $('.generate-button').on('click', updateRandomColors);
 $('.save-button-palette').on('click', event => savePalette(event));
 $('.projects-palettes-container').on('click', '.trash-can', (event) => deletePalette(event));
-$('.projects-palettes-container').on('click', '.delete-project-button', (event) => deleteProject(event));
+$('.projects-palettes-container').on('click', '.delete-project-x', (event) => deleteProject(event));
