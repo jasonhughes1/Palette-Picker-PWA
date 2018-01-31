@@ -136,6 +136,7 @@ const savePalette = async (event) => {
   const paletteName = $('.palette-input').val()
   const projectName = $('.new-project').val()
   const projects_id = $('.new-project').find(':selected').attr('data-projectID')
+  console.log(projects_id);
   const palColors = {
     color1: $('.code1').text(),
     color2: $('.code2').text(),
@@ -176,7 +177,8 @@ const deletePalette = (event) => {
 };
 
 const deleteProject = (event) => {
-  const id = $(event.target).closest('.parent-palette-name').attr('id')
+  const id = $(event.target).closest('.palette-card').attr('id')
+  console.log(id);
   fetch(`/api/v1/projects/${id}`, {
     method: 'DELETE'
   })
