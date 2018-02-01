@@ -192,7 +192,7 @@ const deleteProject = (event) => {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
 
-    // Register a new service worker
+    // Register a new service worker  
     navigator.serviceWorker.register('./service-worker.js')
     .then(registration => navigator.serviceWorker.ready)
     .then(registration => {
