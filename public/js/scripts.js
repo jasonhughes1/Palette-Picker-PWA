@@ -189,6 +189,21 @@ const deleteProject = (event) => {
 };
 
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+
+    // Register a new service worker
+    navigator.serviceWorker.register('./service-worker.js')
+    .then(registration => navigator.serviceWorker.ready)
+    .then(registration => {
+      Notification.requestPermission();
+      console.log('ServiceWorker registration successful');
+    }).catch(error => {
+      console.log(`ServiceWorker registration failed: ${error}`);
+    });
+  });
+}
+
 
 $('.save-button-project').on('click', event => projectGenerator());
 $('.unlocked-image').on('click', event => toggleLockIcon(event));
