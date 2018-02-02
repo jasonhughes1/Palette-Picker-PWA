@@ -33,3 +33,10 @@ this.addEventListener('activate', event => {
     })
   )
 });
+
+
+this.addEventListener('message', (event) => {
+ if (event.data.type === 'add-palette') {
+   self.registration.showNotification(`${event.data.paletteName} was added`)
+ }
+});

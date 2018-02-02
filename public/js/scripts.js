@@ -147,10 +147,10 @@ const savePalette = async (event) => {
   const pal = { projectName, paletteName, projects_id, ...palColors }
   const { id } = await postPalette(pal)
   displayPalettes({...pal, id})
+
 }
 
 const postPalette = async (palette) => {
-
   try {
     const postNewPalette = await fetch(`/api/v1/projects/${palette.projects_id}/palette`, {
       method: 'POST',
@@ -160,6 +160,7 @@ const postPalette = async (palette) => {
       }
     })
     const paletteid = await postNewPalette.json()
+      addPaletteNotification(palette.paletteName)
     return paletteid
     } catch (error) {
   }
@@ -189,10 +190,18 @@ const deleteProject = (event) => {
 };
 
 
+const addPaletteNotification = (name) => {
+  navigator.serviceWorker.controller.postMessage({
+    type: 'pal-name',
+    paletteName: name
+  });
+};
+
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
 
-    // Register a new service worker  
+    // Register a new service worker
     navigator.serviceWorker.register('./service-worker.js')
     .then(registration => navigator.serviceWorker.ready)
     .then(registration => {
